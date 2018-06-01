@@ -5,7 +5,7 @@
  *
  * For more information, see: http://go.microsoft.com/fwlink/?LinkId=620342
  */
-//#define OFFLINE_SYNC_ENABLED
+#define OFFLINE_SYNC_ENABLED
 
 using System;
 using System.Collections.Generic;
@@ -41,6 +41,8 @@ namespace lis180522
             this.client = new MobileServiceClient(Constants.ApplicationURL);
 
 #if OFFLINE_SYNC_ENABLED
+            //テーブル操作を実行する前に、ローカルストアを初期化
+            //MobileServiceSQLiteStore:新しいローカルSQLite DB作成
             var store = new MobileServiceSQLiteStore(offlineDbPath);
             store.DefineTable<TodoItem>();
 
